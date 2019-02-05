@@ -10,4 +10,5 @@ func main() {
 	remainingCards.print()
 
 	fmt.Println("My hand is " + hand.toString())
+	hand.saveToFile("my_hand.txt")
 }
