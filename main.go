@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+const deckFile string = "deck_file.txt"
+
 func main() {
 	cards := newDeck()
 
@@ -10,5 +12,8 @@ func main() {
 	remainingCards.print()
 
 	fmt.Printf("\nMy hand is %s and I have %d", hand.toString(), hand.count())
-	hand.saveToFile("my_hand.txt")
+
+	if err := hand.saveToFile(deckFile); err != nil {
+		fmt.Printf("Save to fiel error %s", err.Error())
+	}
 }
