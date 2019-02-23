@@ -1,8 +1,11 @@
 package main
 
-import "testing"
+import (
+	"os"
+	"testing"
+)
 
-func TestNewDeck(t * testing.T)  {
+func TestNewDeck(t *testing.T) {
 	d := newDeck()
 
 	if len(d) != 16 {
@@ -18,6 +21,23 @@ func TestNewDeck(t * testing.T)  {
 	}
 
 	if !hasAceOfSpades {
-		t.Error("Expected deck to have Ace of Spades, but it doesn't containt it.")
+		t.Error("Expected deck to have Ace of Spades, but it doesn't contains it.")
 	}
+}
+
+func TestSaveToFileAndNewDeckFromFile(t *testing.T) {
+	const testingDeckFile string = "_decktesting"
+
+	os.Remove(testingDeckFile)
+
+	deck := newDeck()
+	deck.saveToFile(testingDeckFile)
+
+	loadedDeck := newDeckFromFile(testingDeckFile)
+
+	if len(loadedDeck) != 16 {
+		t.Errorf("Expected 16 cards, got %v", len(loadedDeck))
+	}
+
+	os.Remove(testingDeckFile)
 }
