@@ -35,3 +35,7 @@ func deal(d deck, handSize int8) (deck, deck) {
 func (d deck) toString() string {
 	return strings.Join([]string(d), ",")
 }
+
+func (d deck) count() int {
+	return len(d)
+}

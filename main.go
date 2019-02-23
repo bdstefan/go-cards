@@ -9,5 +9,5 @@ func main() {
 	hand.print()
 	remainingCards.print()
 
-	fmt.Println("My hand is " + hand.toString())
+	fmt.Printf("\nMy hand is %s and I have %d", hand.toString(), hand.count())
 }
