@@ -36,6 +36,10 @@ func (d deck) toString() string {
 	return strings.Join([]string(d), ",")
 }
 
+
+func (d deck) saveToFile(fileName string) error {
+	return ioutil.WriteFile(fileName, []byte(d.toString()), 0666)
+}
 func (d deck) count() int {
 	return len(d)
 }
