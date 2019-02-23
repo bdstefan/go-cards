@@ -17,4 +17,8 @@ func main() {
 	if err := hand.saveToFile(deckFile); err != nil {
 		fmt.Printf("Save to fiel error %s", err.Error())
 	}
+
+	deckFromFile := newDeckFromFile(deckFile)
+
+	fmt.Printf("\nMy deck from file is: %s", deckFromFile.toString())
 }
