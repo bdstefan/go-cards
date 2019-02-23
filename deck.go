@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"strings"
 	"io/ioutil"
+	"time"
 )
 
 type deck []string
@@ -37,10 +39,20 @@ func (d deck) toString() string {
 	return strings.Join([]string(d), ",")
 }
 
+func (d deck) shuffle() {
+	source := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(source)
+
+	for i := range d {
+		newPosition := r.Intn(len(d) - 1)
+		d[i], d[newPosition] = d[newPosition], d[i]
+	}
+}
 
 func (d deck) saveToFile(fileName string) error {
 	return ioutil.WriteFile(fileName, []byte(d.toString()), 0666)
 }
+
 func (d deck) count() int {
 	return len(d)
 }
